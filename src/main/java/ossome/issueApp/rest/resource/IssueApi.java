@@ -14,7 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import ossome.issueApp.rest.impl.IssueApiImpl;
-import ossome.issueApp.rest.model.ActivityIssue;
+import ossome.issueApp.rest.model.Issue;
 
 @Path("issueRecords")
 public class IssueApi {
@@ -31,7 +31,7 @@ public class IssueApi {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ActivityIssue> getAllIssueRecords() {
+    public List<Issue> getAllIssueRecords() {
     	return issueApiImpl.getAllIssues();
     }
     
@@ -39,30 +39,31 @@ public class IssueApi {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{issueId}")
-    public ActivityIssue getIssueRecord(@PathParam("issueId")String issueId) {
+    public Issue getIssueRecord(@PathParam("issueId")String issueId) {
     	return issueApiImpl.getIssue(Long.valueOf(issueId));
     }
     
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public ActivityIssue addIssueRecord(ActivityIssue issue) {
-    	return issueApiImpl.addActivityIssue(issue);
+    public Issue addIssueRecord(Issue issue) {
+    	return issueApiImpl.addIssue(issue);
     }
     
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public ActivityIssue updateIssueRecord(@PathParam("issueId")String issueId, ActivityIssue issue) {
+    @Path("/{issueId}")
+    public Issue updateIssueRecord(@PathParam("issueId")String issueId, Issue issue) {
     	issue.setId(Long.valueOf(issueId));
-    	return issueApiImpl.updateActivityIssue(issue);
+    	return issueApiImpl.updateIssue(issue);
     }
     
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{issueId}")
-    public ActivityIssue deleteIssueRecord(@PathParam("issueId")String issueId) {
-    	return issueApiImpl.removeActivityIssue(Long.valueOf(issueId));
+    public Issue deleteIssueRecord(@PathParam("issueId")String issueId) {
+    	return issueApiImpl.removeIssue(Long.valueOf(issueId));
     }
 }

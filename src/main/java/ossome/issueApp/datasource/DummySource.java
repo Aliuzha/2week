@@ -3,13 +3,13 @@ package ossome.issueApp.datasource;
 import java.util.ArrayList;
 import java.util.List;
 
-import ossome.issueApp.rest.model.ActivityIssue;
+import ossome.issueApp.rest.model.Issue;
 
 public class DummySource {
 	
-	private static List<ActivityIssue> issueList = new ArrayList<ActivityIssue>();
+	private static List<Issue> issueList = new ArrayList<Issue>();
 	
-	public static List<ActivityIssue> getIssueList(){
+	public static List<Issue> getIssueList(){
 		return issueList;
 	}
 }

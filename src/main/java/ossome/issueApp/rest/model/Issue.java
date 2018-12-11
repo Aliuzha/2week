@@ -2,22 +2,40 @@ package ossome.issueApp.rest.model;
 
 public class Issue {
 
-   protected Long id;
+   private Long id;
 
-   protected String issueDescription;
+   private String issueDescription;
 
-   protected String creationDate;
+   private String creationDate;
 
-   protected String fixComments;
-
+   private String resolutionComments;
+   
+   private String author;
+ 
+   private String issueType;
+   
+   private String projectType;
+   
+   private String activityName;
+   
+   private String activityStatus;
+   
+   private String systemName;
+   
    public Issue() {
    }
    
-   public Issue(Long id, String issueDescription, String creationDate,String fixComments) {
+   public Issue(Long id, String issueDescription, String creationDate,String resolutionComments, String issueType, String projectType, String activityName, String systemName, String author, String activityStatus) {
 	   this.id = id;
 	   this.creationDate = creationDate;
 	   this.issueDescription = issueDescription;
-	   this.fixComments = fixComments;
+	   this.resolutionComments = resolutionComments;
+	   this.issueType = issueType;
+	   this.projectType = projectType;
+	   this.activityName = activityName;
+	   this.systemName = systemName;
+	   this.author = author;
+	   this.activityName = activityName;
 	   
    }
 
@@ -46,10 +64,69 @@ public class Issue {
    }
 
    public String getFixComments() {
-      return this.fixComments;
+      return this.resolutionComments;
    }
 
    public void setFixComments(String value) {
-      this.fixComments = value;
+      this.resolutionComments = value;
    }
+   
+   public String getResolutionComments() {
+	return resolutionComments;
+   }
+
+	public void setResolutionComments(String resolutionComments) {
+		this.resolutionComments = resolutionComments;
+	}
+	
+	public String getIssueType() {
+		return issueType;
+	}
+	
+	public void setIssueType(String issueType) {
+		this.issueType = issueType;
+	}
+	
+	public String getProjectType() {
+		return projectType;
+	}
+	
+	public void setProjectType(String projectType) {
+		this.projectType = projectType;
+	}
+	
+	public String getActivityName() {
+		return activityName;
+	}
+	
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+	
+	public String getSystemName() {
+		return systemName;
+	}
+	
+	public void setSystemName(String systemName) {
+		this.systemName = systemName;
+	}
+	   
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getActivityStatus() {
+		return activityStatus;
+	}
+
+	public void setActivityStatus(String activityStatus) {
+		this.activityStatus = activityStatus;
+	}
+	
+	
+
 }
