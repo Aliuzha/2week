@@ -13,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import ossome.issueApp.datasource.DBUtil;
 import ossome.issueApp.rest.impl.IssueApiImpl;
 import ossome.issueApp.rest.model.Issue;
 
@@ -21,11 +22,14 @@ public class IssueApi {
 
 	
 	IssueApiImpl issueApiImpl = new IssueApiImpl();
+	DBUtil db = new DBUtil();
 	
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/ping")
     public String ping() {
+    	List<String> testList = db.testDB();
+    	if (testList.size()>0) return issueApiImpl.ping()+db.testDB().get(0);
         return issueApiImpl.ping();
     }
     
