@@ -1,12 +1,15 @@
 package ossome.issueApp.rest.model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Issue {
 
    private Long id;
 
    private String issueDescription;
 
-   private String creationDate;
+   private LocalDate creationDate;
 
    private String resolutionComments;
    
@@ -22,12 +25,14 @@ public class Issue {
    
    private String systemName;
    
+   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMM-yyyy");
+   
    public Issue() {
    }
    
    public Issue(Long id, String issueDescription, String creationDate,String resolutionComments, String issueType, String projectType, String activityName, String systemName, String author, String activityStatus) {
 	   this.id = id;
-	   this.creationDate = creationDate;
+	   this.creationDate = LocalDate.parse(creationDate,formatter);
 	   this.issueDescription = issueDescription;
 	   this.resolutionComments = resolutionComments;
 	   this.issueType = issueType;
@@ -35,7 +40,7 @@ public class Issue {
 	   this.activityName = activityName;
 	   this.systemName = systemName;
 	   this.author = author;
-	   this.activityName = activityName;
+	   this.activityStatus = activityStatus;
 	   
    }
 
@@ -55,12 +60,12 @@ public class Issue {
       this.issueDescription = value;
    }
 
-   public String getCreationDate() {
+   public LocalDate getCreationDate() {
       return this.creationDate;
    }
 
    public void setCreationDate(String value) {
-      this.creationDate = value;
+      this.creationDate = LocalDate.parse(value,formatter);
    }
 
    public String getFixComments() {

@@ -28,8 +28,6 @@ public class IssueApi {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/ping")
     public String ping() {
-    	List<String> testList = db.testDB();
-    	if (testList.size()>0) return issueApiImpl.ping()+db.testDB().get(0);
         return issueApiImpl.ping();
     }
     

@@ -1,14 +1,21 @@
 package ossome.issueApp.rest.impl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import ossome.issueApp.dao.IssueDao;
+import ossome.issueApp.datasource.DBUtil;
 import ossome.issueApp.datasource.DummySource;
+import ossome.issueApp.datasource.JdbcQuery;
 import ossome.issueApp.rest.model.Issue;
 
 public class IssueApiImpl {
 	
 	private List<Issue> dataSource = DummySource.getIssueList();
+	private IssueDao dao = new IssueDao();
 	
 	public String ping() {
 		return "issueApp API up and running!";
@@ -16,33 +23,23 @@ public class IssueApiImpl {
 	
 	public List<Issue> getAllIssues() {
 		
-		//CHANGE WITH DATASOURCE--
-		return dataSource;		//
-		//------------------------
+		List<Issue> issues = dao.getAllIssues();
+		
+		return issues;
 	}
 	
 	public Issue getIssue(Long id) {
 		
-		//CHANGE WITH DATASOURCE----------------------
-		for (Issue issue: dataSource) {		//
-			if (issue.getId()==id)return issue;		//
-		}
-		//--------------------------------------------
-		
-		return null;
-		
+		return dao.getAnIssue(id);
+				
 	}
 	
 	public Issue addIssue(Issue issue){
-		List<Issue> tempList = dataSource.stream().filter(Issue-> Issue.getId()==issue.getId()).collect(Collectors.toList());
-		if (tempList.size()>0) return null;
-		else {
-			
-			//CHANGE WITH DATASOURCE----
-			dataSource.add(issue);	//--
-			//--------------------------
-			return issue;
-		}		
+		
+		boolean created = dao.createIssue(issue);
+		if (created)return issue;
+		else return null;
+		
 	}
 	
 	public Issue updateIssue(Issue issue){
